@@ -1,0 +1,133 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+/* Responsive design - maintain proportions */
+:root {
+  --video-width: 400px;
+  --video-height: 300px;
+  --content-width: clamp(300px, 35vw, 550px);
+  --content-title-size: clamp(1.5rem, 3vw, 3rem);
+  --content-text-size: clamp(0.875rem, 1.2vw, 1.125rem);
+  --items-left-offset: calc(128px + 15vw);
+  --items-max-width: 400px;
+}
+
+.video-container {
+  left: var(--items-left-offset);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.video-player {
+  width: var(--video-width);
+  height: var(--video-height);
+  box-shadow: 0 0 40px rgba(255,255,255,0.6), 0 0 80px rgba(255,255,255,0.3);
+}
+
+.content-panel {
+  left: calc(var(--items-left-offset) + var(--items-max-width) + 30px);
+  top: 280px;
+  transform: none;
+  width: var(--content-width);
+  max-width: calc(100vw - var(--items-left-offset) - var(--items-max-width) - 50px);
+}
+
+.content-card {
+  padding: 0;
+}
+
+.content-title {
+  font-size: var(--content-title-size);
+  line-height: 1.2;
+}
+
+.content-text {
+  font-size: var(--content-text-size);
+  line-height: 1.5;
+}
+
+/* Large screens - more space */
+@media (min-width: 1400px) {
+  :root {
+    --video-width: 450px;
+    --video-height: 340px;
+    --content-width: clamp(400px, 40vw, 650px);
+  }
+}
+
+/* Medium to Large Tablet */
+@media (max-width: 1280px) {
+  :root {
+    --video-width: 350px;
+    --video-height: 260px;
+    --content-width: clamp(280px, 32vw, 450px);
+    --items-max-width: 350px;
+  }
+
+  .content-panel {
+    left: calc(var(--items-left-offset) + var(--items-max-width) + 25px);
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  :root {
+    --video-width: 300px;
+    --video-height: 225px;
+    --content-width: clamp(260px, 30vw, 380px);
+    --items-max-width: 320px;
+  }
+
+  .content-panel {
+    left: calc(var(--items-left-offset) + var(--items-max-width) + 20px);
+    top: 260px;
+  }
+}
+
+/* Small Tablet / Large Mobile Landscape */
+@media (max-width: 768px) {
+  :root {
+    --video-width: 260px;
+    --video-height: 195px;
+    --content-width: clamp(220px, 28vw, 320px);
+    --items-max-width: 280px;
+  }
+
+  .content-panel {
+    left: calc(var(--items-left-offset) + var(--items-max-width) + 25px);
+    top: 240px;
+  }
+}
+
+/* Mobile Landscape */
+@media (max-width: 640px) {
+  :root {
+    --video-width: 220px;
+    --video-height: 165px;
+    --content-width: clamp(180px, 25vw, 260px);
+    --items-left-offset: calc(80px + 12vw);
+    --items-max-width: 240px;
+  }
+
+  .content-panel {
+    left: calc(var(--items-left-offset) + var(--items-max-width) + 20px);
+    top: 220px;
+  }
+}
+
+/* Very Small Mobile */
+@media (max-width: 480px) {
+  :root {
+    --video-width: 180px;
+    --video-height: 135px;
+    --content-width: clamp(150px, 22vw, 200px);
+    --items-left-offset: calc(60px + 10vw);
+    --items-max-width: 200px;
+  }
+
+  .content-panel {
+    left: calc(var(--items-left-offset) + var(--items-max-width) + 15px);
+    top: 200px;
+  }
+}
