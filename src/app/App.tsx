@@ -101,7 +101,7 @@ const categories = [
         title: 'KalingApp Web',
         content: 'KalingApp Web is the account creation site for KalingApp, built with React and Vite. It gives users a clean web onboarding experience before connecting to the mobile learning app.',
         thumbnail: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400',
-        video: '/src/imports/kalingapp-web.mp4'
+        video: '/src/imports/kalingappweb.mp4'
       },
       {
         title: 'Video Editing Reel',
@@ -516,6 +516,7 @@ export default function App() {
                       const isActiveItem = itemIdx === activeItem;
                       const itemDistance = activeItem !== null ? Math.abs(itemIdx - activeItem) : 999;
                       const isPlayingVideo = enlargedVideo === item.video && isActiveItem;
+                      const thumbSrc = item.thumbnail ?? (item.video ? item.video.replace(/\.mp4$/i, '.jpg') : null);
 
                       // Determine if this item should be above or below the category
                       let itemPosition;
@@ -578,11 +579,12 @@ export default function App() {
                                   }}
                                   className="w-10 h-10 flex-shrink-0"
                                 >
-                                  {item.thumbnail ? (
+                                  {thumbSrc ? (
                                     <img
-                                      src={item.thumbnail}
+                                      src={thumbSrc}
                                       alt={item.title}
                                       className="w-10 h-10 object-cover rounded"
+                                      onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
                                     />
                                   ) : (
                                     <Icon size={24} className="text-white" strokeWidth={1.5} />
