@@ -105,7 +105,7 @@ const categories: Category[] = [
       },
       {
         title: 'Siopao Platformer (Unity 2D Game)',
-        content: 'A 2D platformer game created in Unity, highlighting level design, character movement, and basic physics. Focused on gameplay feel and level pacing.',
+        content: 'A 2d Platformer in develop game using Unity Engine. It features a character named Siopao(my IRL cat name) who navigates through various levels, overcoming obstacles and enemies. The game focuses on tight controls, engaging level design, and charming pixel art aesthetics.',
         thumbnail: siopaoJpg,
         video: siopaoMp4
       },
@@ -406,6 +406,9 @@ export default function App() {
   const handleItemHover = (catIdx: number, itemIdx: number, hasVideo: boolean) => {
     if (!hasVideo) return;
 
+    // Autoplay only the currently selected item.
+    if (catIdx !== activeCategory || itemIdx !== activeItem) return;
+
     if (hoverTimerRef.current) {
       clearTimeout(hoverTimerRef.current);
     }
@@ -436,6 +439,13 @@ export default function App() {
       }
     };
   }, []);
+
+  useEffect(() => {
+    if (hoverTimerRef.current) {
+      clearTimeout(hoverTimerRef.current);
+      hoverTimerRef.current = null;
+    }
+  }, [activeCategory, activeItem]);
 
   // Update video position to align with the selected item's thumbnail
   useEffect(() => {
