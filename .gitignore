@@ -1,0 +1,13 @@
+node_modules/
+/.pnp
+/.pnp.js
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+dist/
+/.cache
+.DS_Store
+/.vite
+/.idea
+/.vscode
+*.log
