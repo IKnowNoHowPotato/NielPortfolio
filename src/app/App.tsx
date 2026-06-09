@@ -258,6 +258,8 @@ export default function App() {
   const [videoPosition, setVideoPosition] = useState<{ top: number } | null>(null);
   const hoverTimerRef = useRef<NodeJS.Timeout | null>(null);
   const thumbnailRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const playLockRef = useRef<boolean>(false); // prevents hover auto-play immediately after manual play
 
   const currentCategory = categories[activeCategory];
   const currentItem = activeItem !== null ? currentCategory.items[activeItem] : null;
@@ -302,7 +304,14 @@ export default function App() {
           if (enlargedVideo === item.video) {
             setEnlargedVideo(null);
           } else {
-            setEnlargedVideo(item.video);
+              // manual play — lock hover autoplay briefly
+              playLockRef.current = true;
+              setTimeout(() => { playLockRef.current = false; }, 1000);
+              // pause any existing video before switching
+              if (videoRef.current) {
+                try { videoRef.current.pause(); videoRef.current.src = ''; } catch {}
+              }
+              setEnlargedVideo(item.video);
           }
         }
       } else if (e.key === 'Escape' && enlargedVideo) {
@@ -403,7 +412,11 @@ export default function App() {
 
     hoverTimerRef.current = setTimeout(() => {
       const item = categories[catIdx].items[itemIdx];
-      if (item.video) {
+      if (item.video && !playLockRef.current) {
+        // pause existing before hover play
+        if (videoRef.current) {
+          try { videoRef.current.pause(); videoRef.current.src = ''; } catch {}
+        }
         setEnlargedVideo(item.video);
       }
     }, 3000);
@@ -678,6 +691,7 @@ export default function App() {
             transition={{ duration: 0.25, ease: 'easeOut' }}
           >
             <video
+              ref={(el) => (videoRef.current = el)}
               src={enlargedVideo}
               autoPlay
               loop
