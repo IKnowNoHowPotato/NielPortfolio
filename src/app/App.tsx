@@ -641,11 +641,11 @@ export default function App() {
         {/* Enlarged Video - Fixed on Left Side */}
         {enlargedVideo && (
           <motion.div
-            className="fixed video-container z-50"
-            initial={{ opacity: 0, scale: 0.1 }}
+            className="absolute left-8 top-1/2 transform -translate-y-1/2 z-50 hidden md:block"
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.1 }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
           >
             <video
               src={enlargedVideo}
@@ -653,7 +653,7 @@ export default function App() {
               loop
               muted
               playsInline
-              className="object-cover rounded-lg shadow-2xl video-player"
+              className="object-cover rounded-lg shadow-2xl video-player w-[36vw] max-w-[640px] h-auto"
             />
           </motion.div>
         )}
