@@ -268,12 +268,14 @@ export default function App() {
         if (activeCategory > 0) {
           setActiveCategory(activeCategory - 1);
           setActiveItem(null);
+          setEnlargedVideo(null);
         }
       } else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
         e.preventDefault();
         if (activeCategory < categories.length - 1) {
           setActiveCategory(activeCategory + 1);
           setActiveItem(null);
+          setEnlargedVideo(null);
         }
       } else if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') {
         e.preventDefault();
@@ -321,9 +323,11 @@ export default function App() {
         if (e.deltaX > 0 && activeCategory < categories.length - 1) {
           setActiveCategory(activeCategory + 1);
           setActiveItem(null);
+          setEnlargedVideo(null);
         } else if (e.deltaX < 0 && activeCategory > 0) {
           setActiveCategory(activeCategory - 1);
           setActiveItem(null);
+          setEnlargedVideo(null);
         }
       } else {
         // Vertical scroll - inverted for natural feel
@@ -363,9 +367,11 @@ export default function App() {
       if (deltaX > threshold && activeCategory > 0) {
         setActiveCategory(activeCategory - 1);
         setActiveItem(null);
+        setEnlargedVideo(null);
       } else if (deltaX < -threshold && activeCategory < categories.length - 1) {
         setActiveCategory(activeCategory + 1);
         setActiveItem(null);
+        setEnlargedVideo(null);
       }
     } else {
       if (deltaY > threshold) {
@@ -436,11 +442,13 @@ export default function App() {
       if (activeCategory > 0) {
         setActiveCategory(activeCategory - 1);
         setActiveItem(null);
+        setEnlargedVideo(null);
       }
     } else if (direction === 'right') {
       if (activeCategory < categories.length - 1) {
         setActiveCategory(activeCategory + 1);
         setActiveItem(null);
+        setEnlargedVideo(null);
       }
     }
   };
