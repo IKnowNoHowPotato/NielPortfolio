@@ -70,43 +70,43 @@ const categories = [
       {
         title: 'CBNHS School Portal',
         content: 'A school portal demo built with Laravel for persistent data storage and CRUD workflows. It showcases student management, schedules, teacher workflows, authentication, and reporting for administrators.',
-        thumbnail: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400',
+        thumbnail: '/src/imports/cbnhs school portal.jpg',
         video: '/src/imports/cbnhs school portal.mp4'
       },
       {
         title: 'Siopao Platformer (Unity 2D Game)',
         content: 'A 2D platformer game created in Unity, highlighting level design, character movement, and basic physics. Focused on gameplay feel and level pacing.',
-        thumbnail: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400',
+        thumbnail: '/src/imports/siopao-platformergame.jpg',
         video: '/src/imports/siopao-platformergame.mp4'
       },
       {
         title: 'SmartCatch',
         content: 'SmartCatch is a Laravel-based web and mobile app with AI capability. It uses the camera to detect fish type and identify what kind of fish it is, with a focus on intelligent automation, real-time interactions, and responsive UX.',
-        thumbnail: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400',
+        thumbnail: '/src/imports/smartcatch .jpg',
         video: '/src/imports/smartcatch .mp4'
       },
       {
         title: 'Rentaklat',
         content: 'Rentaklat is an online book renting web app built with Laravel and working data storage. It supports browsing, renting, and managing book records through a clean and practical interface.',
-        thumbnail: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400',
+        thumbnail: '/src/imports/rentaklat.jpg',
         video: '/src/imports/rentaklat.mp4'
       },
       {
         title: 'KalingApp',
         content: 'KalingApp is a mobile learning app for children built with Flutter and Android Studio. It detects a child\'s learning level through gameplay so the app can adapt the learning experience to their progress.',
-        thumbnail: 'https://images.unsplash.com/photo-1513258496099-48168024aec0?w=400',
+        thumbnail: '/src/imports/kalingapp.jpg',
         video: '/src/imports/kalingapp.mp4'
       },
       {
         title: 'KalingApp Web',
         content: 'KalingApp Web is the account creation site for KalingApp, built with React and Vite. It gives users a clean web onboarding experience before connecting to the mobile learning app.',
-        thumbnail: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400',
+        thumbnail: '/src/imports/kalingappweb.jpg',
         video: '/src/imports/kalingappweb.mp4'
       },
       {
         title: 'Video Editing Reel',
         content: 'I create video shorts, reels, TikTok videos, gameplay highlights, and funny videos using Adobe Premiere Pro, with a focus on clean cuts, transitions, audio syncing, and motion polish.',
-        thumbnail: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400',
+        thumbnail: '/src/imports/video editing skill.jpg',
         video: '/src/imports/video editing skill.mp4'
       }
     ]
