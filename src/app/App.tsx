@@ -4,7 +4,37 @@ import { Home, User, Code, FolderOpen, Mail } from 'lucide-react';
 import { MobileControls } from './components/MobileControls';
 import { LandscapePrompt } from './components/LandscapePrompt';
 
-const categories = [
+// Import project media so Vite includes them in the build
+import cbnhsJpg from '../imports/cbnhs school portal.jpg';
+import cbnhsMp4 from '../imports/cbnhs school portal.mp4';
+import siopaoJpg from '../imports/siopao-platformergame.jpg';
+import siopaoMp4 from '../imports/siopao-platformergame.mp4';
+import smartcatchJpg from '../imports/smartcatch .jpg';
+import smartcatchMp4 from '../imports/smartcatch .mp4';
+import rentaklatJpg from '../imports/rentaklat.jpg';
+import rentaklatMp4 from '../imports/rentaklat.mp4';
+import kalingappJpg from '../imports/Kalingapp.jpg';
+import kalingappMp4 from '../imports/Kalingapp.mp4';
+import kalingappwebJpg from '../imports/Kalingappweb.jpg';
+import kalingappwebMp4 from '../imports/Kalingappweb.mp4';
+import videoEditJpg from '../imports/video editing skill.jpg';
+import videoEditMp4 from '../imports/video editing skill.mp4';
+
+type Item = {
+  title: string;
+  content: string;
+  thumbnail?: string;
+  video?: string;
+};
+
+type Category = {
+  id: string;
+  title: string;
+  icon: any;
+  items: Item[];
+};
+
+const categories: Category[] = [
   {
     id: 'home',
     title: 'Home',
@@ -70,44 +100,44 @@ const categories = [
       {
         title: 'CBNHS School Portal',
         content: 'A school portal demo built with Laravel for persistent data storage and CRUD workflows. It showcases student management, schedules, teacher workflows, authentication, and reporting for administrators.',
-        thumbnail: '/src/imports/cbnhs school portal.jpg',
-        video: '/src/imports/cbnhs school portal.mp4'
+        thumbnail: cbnhsJpg,
+        video: cbnhsMp4
       },
       {
         title: 'Siopao Platformer (Unity 2D Game)',
         content: 'A 2D platformer game created in Unity, highlighting level design, character movement, and basic physics. Focused on gameplay feel and level pacing.',
-        thumbnail: '/src/imports/siopao-platformergame.jpg',
-        video: '/src/imports/siopao-platformergame.mp4'
+        thumbnail: siopaoJpg,
+        video: siopaoMp4
       },
       {
         title: 'SmartCatch',
         content: 'SmartCatch is a Laravel-based web and mobile app with AI capability. It uses the camera to detect fish type and identify what kind of fish it is, with a focus on intelligent automation, real-time interactions, and responsive UX.',
-        thumbnail: '/src/imports/smartcatch .jpg',
-        video: '/src/imports/smartcatch .mp4'
+        thumbnail: smartcatchJpg,
+        video: smartcatchMp4
       },
       {
         title: 'Rentaklat',
         content: 'Rentaklat is an online book renting web app built with Laravel and working data storage. It supports browsing, renting, and managing book records through a clean and practical interface.',
-        thumbnail: '/src/imports/rentaklat.jpg',
-        video: '/src/imports/rentaklat.mp4'
+        thumbnail: rentaklatJpg,
+        video: rentaklatMp4
       },
       {
         title: 'KalingApp',
         content: 'KalingApp is a mobile learning app for children built with Flutter and Android Studio. It detects a child\'s learning level through gameplay so the app can adapt the learning experience to their progress.',
-        thumbnail: '/src/imports/kalingapp.jpg',
-        video: '/src/imports/kalingapp.mp4'
+        thumbnail: kalingappJpg,
+        video: kalingappMp4
       },
       {
         title: 'KalingApp Web',
         content: 'KalingApp Web is the account creation site for KalingApp, built with React and Vite. It gives users a clean web onboarding experience before connecting to the mobile learning app.',
-        thumbnail: '/src/imports/kalingappweb.jpg',
-        video: '/src/imports/kalingappweb.mp4'
+        thumbnail: kalingappwebJpg,
+        video: kalingappwebMp4
       },
       {
         title: 'Video Editing Reel',
         content: 'I create video shorts, reels, TikTok videos, gameplay highlights, and funny videos using Adobe Premiere Pro, with a focus on clean cuts, transitions, audio syncing, and motion polish.',
-        thumbnail: '/src/imports/video editing skill.jpg',
-        video: '/src/imports/video editing skill.mp4'
+        thumbnail: videoEditJpg,
+        video: videoEditMp4
       }
     ]
   },
@@ -225,7 +255,6 @@ export default function App() {
   const [activeItem, setActiveItem] = useState<number | null>(null);
   const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(null);
   const [enlargedVideo, setEnlargedVideo] = useState<string | null>(null);
-  const [videoPosition, setVideoPosition] = useState<{ x: number; y: number } | null>(null);
   const hoverTimerRef = useRef<NodeJS.Timeout | null>(null);
   const thumbnailRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
@@ -255,7 +284,6 @@ export default function App() {
         }
 
         setEnlargedVideo(null);
-        setVideoPosition(null);
       } else if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') {
         e.preventDefault();
         if (activeItem === null) {
@@ -264,7 +292,6 @@ export default function App() {
           setActiveItem(activeItem + 1);
         }
         setEnlargedVideo(null);
-        setVideoPosition(null);
       } else if ((e.key === 'x' || e.key === 'X' || e.key === 'Enter') && activeItem !== null) {
         e.preventDefault();
         const item = currentCategory.items[activeItem];
@@ -278,7 +305,6 @@ export default function App() {
       } else if (e.key === 'Escape' && enlargedVideo) {
         e.preventDefault();
         setEnlargedVideo(null);
-        setVideoPosition(null);
       }
     };
 
@@ -316,7 +342,6 @@ export default function App() {
 
         }
         setEnlargedVideo(null);
-        setVideoPosition(null);
       }
     };
 
@@ -358,7 +383,6 @@ export default function App() {
 
       }
       setEnlargedVideo(null);
-      setVideoPosition(null);
     }
     setTouchStart(null);
   };
@@ -401,7 +425,6 @@ export default function App() {
         setActiveItem(null);
       }
       setEnlargedVideo(null);
-      setVideoPosition(null);
     } else if (direction === 'down') {
       if (activeItem === null) {
         setActiveItem(0);
@@ -409,7 +432,6 @@ export default function App() {
         setActiveItem(activeItem + 1);
       }
       setEnlargedVideo(null);
-      setVideoPosition(null);
     } else if (direction === 'left') {
       if (activeCategory > 0) {
         setActiveCategory(activeCategory - 1);
@@ -545,7 +567,6 @@ export default function App() {
                               // Toggle video on click if already selected
                               if (enlargedVideo === item.video) {
                                 setEnlargedVideo(null);
-                                setVideoPosition(null);
                               } else {
                                 setEnlargedVideo(item.video);
                               }
