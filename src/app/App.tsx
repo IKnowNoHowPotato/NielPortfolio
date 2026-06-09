@@ -5,20 +5,20 @@ import { MobileControls } from './components/MobileControls';
 import { LandscapePrompt } from './components/LandscapePrompt';
 
 // Import project media so Vite includes them in the build
-import cbnhsJpg from '../imports/cbnhs school portal.jpg';
-import cbnhsMp4 from '../imports/cbnhs school portal.mp4';
-import siopaoJpg from '../imports/siopao-platformergame.jpg';
-import siopaoMp4 from '../imports/siopao-platformergame.mp4';
-import smartcatchJpg from '../imports/smartcatch .jpg';
-import smartcatchMp4 from '../imports/smartcatch .mp4';
-import rentaklatJpg from '../imports/rentaklat.jpg';
-import rentaklatMp4 from '../imports/rentaklat.mp4';
-import kalingappJpg from '../imports/Kalingapp.jpg';
-import kalingappMp4 from '../imports/Kalingapp.mp4';
-import kalingappwebJpg from '../imports/Kalingappweb.jpg';
-import kalingappwebMp4 from '../imports/Kalingappweb.mp4';
-import videoEditJpg from '../imports/video editing skill.jpg';
-import videoEditMp4 from '../imports/video editing skill.mp4';
+const cbnhsJpg = '/imports/cbnhs-school-portal.jpg';
+const cbnhsMp4 = '/imports/cbnhs-school-portal.mp4';
+const siopaoJpg = '/imports/siopao-platformergame.jpg';
+const siopaoMp4 = '/imports/siopao-platformergame.mp4';
+const smartcatchJpg = '/imports/smartcatch.jpg';
+const smartcatchMp4 = '/imports/smartcatch.mp4';
+const rentaklatJpg = '/imports/rentaklat.jpg';
+const rentaklatMp4 = '/imports/rentaklat.mp4';
+const kalingappJpg = '/imports/kalingapp.jpg';
+const kalingappMp4 = '/imports/kalingapp.mp4';
+const kalingappwebJpg = '/imports/kalingappweb.jpg';
+const kalingappwebMp4 = '/imports/kalingappweb.mp4';
+const videoEditJpg = '/imports/video-editing-skill.jpg';
+const videoEditMp4 = '/imports/video-editing-skill.mp4';
 
 type Item = {
   title: string;
