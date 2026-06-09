@@ -255,6 +255,7 @@ export default function App() {
   const [activeItem, setActiveItem] = useState<number | null>(null);
   const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(null);
   const [enlargedVideo, setEnlargedVideo] = useState<string | null>(null);
+  const [videoPosition, setVideoPosition] = useState<{ top: number } | null>(null);
   const hoverTimerRef = useRef<NodeJS.Timeout | null>(null);
   const thumbnailRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
@@ -422,6 +423,34 @@ export default function App() {
       }
     };
   }, []);
+
+  // Update video position to align with the selected item's thumbnail
+  useEffect(() => {
+    const updatePosition = () => {
+      if (!enlargedVideo || activeItem === null) {
+        setVideoPosition(null);
+        return;
+      }
+
+      const key = `${activeCategory}-${activeItem}`;
+      const el = thumbnailRefs.current[key];
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        setVideoPosition({ top: rect.top + rect.height / 2 });
+      } else {
+        setVideoPosition(null);
+      }
+    };
+
+    // Initial position and on resize/scroll
+    updatePosition();
+    window.addEventListener('resize', updatePosition);
+    window.addEventListener('scroll', updatePosition, true);
+    return () => {
+      window.removeEventListener('resize', updatePosition);
+      window.removeEventListener('scroll', updatePosition, true);
+    };
+  }, [enlargedVideo, activeCategory, activeItem]);
 
   const handleDPad = (direction: 'up' | 'down' | 'left' | 'right') => {
     if (direction === 'up') {
@@ -641,7 +670,8 @@ export default function App() {
         {/* Enlarged Video - Fixed on Left Side */}
         {enlargedVideo && (
           <motion.div
-            className="absolute left-8 top-1/2 transform -translate-y-1/2 z-50 hidden md:block"
+            className="fixed left-8 transform -translate-y-1/2 z-50 hidden md:block"
+            style={{ top: videoPosition ? `${videoPosition.top}px` : '50%' }}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
